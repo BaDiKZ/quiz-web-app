@@ -1,6 +1,4 @@
-import { choosenOption  } from "./js-mainPage.js";
-
-
+const choosenOption = localStorage.getItem('choosen');
 const quizzes = [
     [
     {
@@ -217,16 +215,18 @@ const quizzes = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('LOADED');
-    console.log(choosenOption);
-    const questionElement = document.querySelector('question');
-    const answerElements = document.querySelectorAll('answer');
-    console.log(quizzes[choosenOption].length);
+    const questionElement = document.querySelector('.question');
+    const answerElements = document.querySelectorAll('.answer');
     for(let i = 0; i < quizzes[choosenOption].length;i++){
+        console.log(questionElement);
         questionElement.textContent = quizzes[choosenOption][i].question;
 
         for(let j = 0;j < 4;j++){
             answerElements[j].textContent = quizzes[choosenOption][i].answers[j];
         }
+
+        setTimeout(() => { // skonczenie po 5s
+            return;
+        },5000);
     }
 })

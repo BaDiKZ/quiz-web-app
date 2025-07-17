@@ -1,14 +1,14 @@
-
+let choosenOption = null;
 
 const optionButtons = document.querySelectorAll('.option')
 .forEach(button => {
     button.addEventListener('click', () => {
-        let choosenOption = choosenOptionAsNumber(Array.from(button.classList)[1]);
-
+        choosenOption = choosenOptionAsNumber(Array.from(button.classList)[1]);
+        localStorage.setItem('choosen',choosenOption);
         changeWebsite();
     })
 });
-export const exportedOption = choosenOption;
+
 function changeWebsite()
 {
     const path = 'pages/htmlQuiz.html';
@@ -34,3 +34,4 @@ function choosenOptionAsNumber(choosenOption)
     }
 
 }
+
