@@ -22,9 +22,8 @@ body{
 
 .quest-cointainer{
     position: relative;
-    padding: 10px;
+    padding: 20px;
     max-width: 55vw;
-    height: 400px;
     background: linear-gradient(45deg,var(--darkPurple),var(--black));
     border-radius: 20px;
     margin:auto;
@@ -34,8 +33,8 @@ body{
 .question{
     text-align: center;
     animation: 10s infinite question;
-    font-size: 32px;
-    letter-spacing: 3px;
+    font-size: 35px;
+    letter-spacing: 4px;
 }
 
 .answer-cointainer
@@ -44,15 +43,31 @@ body{
     background-color: #8a2cdc7e;
     border-radius: 20px;
     padding: 15px;
+    font-weight: 900;
+    box-shadow: #00000088 2px 2px 5px;
     
 }
 .answer{
     margin:10px;
-    height: 50px;
+    padding:10px 5px;
     background-color: var(--lightPurple);
     border: #8a2cdc;
     box-shadow: #00000088 0px 0px 15px;
     border-radius: 20px;
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    font-size: 32px;
+    font-weight: 800;
+    -webkit-text-stroke: #8a2cdc 1px;
+    text-shadow: #000000b6 0px 0px 5px;
+
+    transition: opacity 0.5s;
+}
+.answer:hover{
+    cursor:pointer;
+    opacity: 0.80;
 }
 
 @keyframes question {
