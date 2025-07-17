@@ -1,4 +1,8 @@
-const htmlQuiz = [
+import { choosenOption  } from "./js-mainPage.js";
+
+
+const quizzes = [
+    [
     {
         question: 'Co oznacza skrót HTML?',
         answers: ['Hyper Trainer Marking Language', 'HyperText Markup Language', 'HyperText Markdown Language', 'Hyper Transfer Markup Language'],
@@ -50,9 +54,9 @@ const htmlQuiz = [
         answers: ['alt', 'title', 'desc', 'name'],
         correct: 'alt'
     }
-];
+    ],
 
-const anglerQuiz = [
+    [
     {
         question: 'Jak nazywa się metoda łowienia z użyciem przynęty sztucznej?',
         answers: ['Spławik', 'Grunt', 'Spinning', 'Muchówka'],
@@ -103,9 +107,9 @@ const anglerQuiz = [
         answers: ['Radar', 'Lornetka', 'Echosonda', 'Mikroskop'],
         correct: 'Echosonda'
     }
-];
+    ],
 
-const catsQuiz = [
+    [
     {
         question: 'Ile żyć ma kot według przesądu?',
         answers: ['3', '7', '9', '12'],
@@ -156,9 +160,9 @@ const catsQuiz = [
         answers: ['Syjamski', 'Maine Coon', 'Sfinks', 'Perski'],
         correct: 'Sfinks'
     }
-];
+    ],
 
-const dogsQuiz = [
+    [
     {
         question: 'Ile łap ma pies?',
         answers: ['2', '4', '3', '1'],
@@ -209,11 +213,20 @@ const dogsQuiz = [
         answers: ['Golden Retriever', 'Chihuahua', 'Owczarek niemiecki', 'Buldog'],
         correct: 'Owczarek niemiecki'
     }
+    ]
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    //for(let i = 0; i > )
+    console.log('LOADED');
+    console.log(choosenOption);
     const questionElement = document.querySelector('question');
+    const answerElements = document.querySelectorAll('answer');
+    console.log(quizzes[choosenOption].length);
+    for(let i = 0; i < quizzes[choosenOption].length;i++){
+        questionElement.textContent = quizzes[choosenOption][i].question;
 
-   // questionElement.textContent = 
+        for(let j = 0;j < 4;j++){
+            answerElements[j].textContent = quizzes[choosenOption][i].answers[j];
+        }
+    }
 })
