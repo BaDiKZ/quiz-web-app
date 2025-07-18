@@ -213,20 +213,45 @@ const quizzes = [
     }
     ]
 ];
+let number = 0;
+const questionElement = document.querySelector('.question');
+const answerElements = document.querySelectorAll('.answer');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const questionElement = document.querySelector('.question');
-    const answerElements = document.querySelectorAll('.answer');
-    for(let i = 0; i < quizzes[choosenOption].length;i++){
-        console.log(questionElement);
-        questionElement.textContent = quizzes[choosenOption][i].question;
+//aktualizowanie tekstu i pytania
+questionElement.textContent = quizzes[choosenOption][number].question;
+for(let i = 0;i < 4;i++){
+    answerElements[i].textContent = quizzes[choosenOption][number].answers[i];
+}
+number++;
 
-        for(let j = 0;j < 4;j++){
-            answerElements[j].textContent = quizzes[choosenOption][i].answers[j];
+const timer = setTimeout(() => { // zmiana pytania po 5sekundach
+    changeQuestion();
+},5000);  
+
+//zmiana pytania po kliknieciu przycisku
+answerElements.forEach(btn => {
+    btn.addEventListener('click', () => {
+        clearTimeout(timer);
+        changeQuestion();
+    });
+});
+
+function changeQuestion()
+{
+    console.log('changing');
+    //sprawdzanie czy to nie koniec quizu
+    if(number <= quizzes[choosenOption].length - 1){
+        questionElement.textContent = quizzes[choosenOption][number].question;
+        for(let i = 0;i < 4;i++){
+         answerElements[i].textContent = quizzes[choosenOption][number].answers[i];
         }
-
-        setTimeout(() => { // skonczenie po 5s
-            return;
-        },5000);
+        number++;
     }
-})
+    else{
+        window.location.href = '../index.html';
+    }
+
+
+
+    
+}
