@@ -216,6 +216,10 @@ const quizzes = [
 let number = 0;
 const questionElement = document.querySelector('.question');
 const answerElements = document.querySelectorAll('.answer');
+const pointsElement = document.querySelector('.points');
+console.log(pointsElement);
+
+let points = 0;
 
 //aktualizowanie tekstu i pytania
 questionElement.textContent = quizzes[choosenOption][number].question;
@@ -231,6 +235,11 @@ const timer = setTimeout(() => { // zmiana pytania po 5sekundach
 //zmiana pytania po kliknieciu przycisku
 answerElements.forEach(btn => {
     btn.addEventListener('click', () => {
+        if(btn.textContent === quizzes[choosenOption][number-1].correct){
+            points++;
+            console.log(points);
+            pointsElement.textContent = points;
+        }
         clearTimeout(timer);
         changeQuestion();
     });
