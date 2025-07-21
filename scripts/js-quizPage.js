@@ -1,3 +1,23 @@
+//-------------------Stars----------------------
+
+let html = '';
+const starsCointainer = document.body.querySelector('.stars');
+let stars = null;
+
+for(let i = 0;i < 50;i++) // generowanie gwiazdek
+{
+    html += '<span class="star">&#9830</span>';
+}
+
+starsCointainer.innerHTML = html;
+
+stars = document.body.querySelectorAll('.star');
+stars.forEach(star => {
+    star.style.top = Math.floor(Math.random() * 101) + '%';
+    star.style.left = Math.floor(Math.random() * 101) + '%';
+});
+//--------------------Scripted-------------------
+
 const choosenOption = localStorage.getItem('choosen');
 const quizzes = [
     [
@@ -213,13 +233,13 @@ const quizzes = [
     }
     ]
 ];
-let number = 0;
 const questionElement = document.querySelector('.question');
 const answerElements = document.querySelectorAll('.answer');
 const pointsElement = document.querySelector('.points');
-console.log(pointsElement);
-
-let points = 0;
+const timerElement = document.querySelector('.timer');
+let number = 0; // numer pytania
+let time = 5; // pozostaly czas
+let points = 0; // punkty
 
 //aktualizowanie tekstu i pytania
 questionElement.textContent = quizzes[choosenOption][number].question;
@@ -227,7 +247,10 @@ for(let i = 0;i < 4;i++){
     answerElements[i].textContent = quizzes[choosenOption][number].answers[i];
 }
 number++;
-
+setInterval(() => {
+    time--;
+    timerElement.textContent = time;
+},1000);
 const timer = setTimeout(() => { // zmiana pytania po 5sekundach
     changeQuestion();
 },5000);  
@@ -236,9 +259,8 @@ const timer = setTimeout(() => { // zmiana pytania po 5sekundach
 answerElements.forEach(btn => {
     btn.addEventListener('click', () => {
         if(btn.textContent === quizzes[choosenOption][number-1].correct){
-            points++;
-            console.log(points);
-            pointsElement.textContent = points;
+            points += 10;
+            pointsElement.style.setProperty('--width',points+'%');
         }
         clearTimeout(timer);
         changeQuestion();
@@ -247,9 +269,10 @@ answerElements.forEach(btn => {
 
 function changeQuestion()
 {
-    console.log('changing');
     //sprawdzanie czy to nie koniec quizu
     if(number <= quizzes[choosenOption].length - 1){
+        time = 5;
+        timerElement.textContent = time;
         questionElement.textContent = quizzes[choosenOption][number].question;
         for(let i = 0;i < 4;i++){
          answerElements[i].textContent = quizzes[choosenOption][number].answers[i];
@@ -259,8 +282,4 @@ function changeQuestion()
     else{
         window.location.href = '../index.html';
     }
-
-
-
-    
 }
