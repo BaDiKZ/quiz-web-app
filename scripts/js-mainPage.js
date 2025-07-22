@@ -1,9 +1,10 @@
 let choosenOption = null;
+let options = ['html','angler','cats','dogs'];
 
 const optionButtons = document.querySelectorAll('.option')
 .forEach(button => {
     button.addEventListener('click', () => {
-        choosenOption = choosenOptionAsNumber(Array.from(button.classList)[1]);
+        choosenOption = choosenOptionAsNumber(button.title);
         localStorage.setItem('choosen',choosenOption);
         changeWebsite();
     })
@@ -15,23 +16,12 @@ function changeWebsite()
     window.location.href = path;
 }
 
-function choosenOptionAsNumber(choosenOption)
+function choosenOptionAsNumber(title)
 {
-    if(choosenOption === 'html'){
-        return 0;
+    for(let i = 0;i < options.length;i++){
+        if(options[i] === title){
+            return i;
+        }
     }
-    else if(choosenOption === 'angler'){
-        return 1;
-    }
-    else if(choosenOption === 'cats'){
-        return 2;
-    }
-    else if(choosenOption === 'dogs'){
-        return 3;
-    }
-    else{
-        return console.error('imposible');
-    }
-
 }
 
