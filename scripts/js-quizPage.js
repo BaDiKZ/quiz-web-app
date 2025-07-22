@@ -251,7 +251,7 @@ setInterval(() => {
     time--;
     timerElement.textContent = time;
 },1000);
-const timer = setTimeout(() => { // zmiana pytania po 5sekundach
+const timer = setInterval(() => { // zmiana pytania po 5sekundach
     changeQuestion();
 },5000);  
 
@@ -262,7 +262,7 @@ answerElements.forEach(btn => {
             points += 10;
             pointsElement.style.setProperty('--width',points+'%');
         }
-        clearTimeout(timer);
+        clearInterval(timer);
         changeQuestion();
     });
 });
