@@ -130,7 +130,6 @@ main{
 }
 .timer{
     position: relative;
-    display: block;
     width:50px;
     height: 50px;
     border-radius: 100%;
@@ -142,6 +141,24 @@ main{
     text-align: center;
     align-content: center;
     box-shadow: #8a2cdc 0px 0px 10px;
+}
+.back{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color:var(--darkPurple);
+    color:white;
+    font-size:30px;
+    margin:auto;
+    margin-top:25px;
+    text-align:center;
+    align-content: center;
+    box-shadow:var(--lightPurple) 0px 0px 10px;
+}
+.back:hover{
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 @keyframes star {

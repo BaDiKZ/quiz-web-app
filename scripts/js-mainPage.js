@@ -1,3 +1,22 @@
+//-------------------Stars----------------------
+
+let html = '';
+const starsCointainer = document.body.querySelector('.stars');
+let stars = null;
+
+for(let i = 0;i < 50;i++) // generowanie gwiazdek
+{
+    html += '<span class="star">&#9830</span>';
+}
+
+starsCointainer.innerHTML = html;
+
+stars = document.body.querySelectorAll('.star');
+stars.forEach(star => {
+    star.style.top = Math.floor(Math.random() * 101) + '%';
+    star.style.left = Math.floor(Math.random() * 101) + '%';
+});
+//--------------------Script-------------------
 let choosenOption = null;
 let options = ['html','angler','cats','dogs'];
 

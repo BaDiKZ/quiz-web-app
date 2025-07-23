@@ -16,9 +16,9 @@ stars.forEach(star => {
     star.style.top = Math.floor(Math.random() * 101) + '%';
     star.style.left = Math.floor(Math.random() * 101) + '%';
 });
-//--------------------Scripted-------------------
+//--------------------Script-------------------
 
-const choosenOption = localStorage.getItem('choosen');
+const choosenOption = localStorage.getItem('choosen'); //wybrana opcja
 const quizzes = [
     [
     {
@@ -232,11 +232,14 @@ const quizzes = [
         correct: 'Owczarek niemiecki'
     }
     ]
-];
+];//quizy
+//elementy na stronie
 const questionElement = document.querySelector('.question');
 const answerElements = document.querySelectorAll('.answer');
 const pointsElement = document.querySelector('.points');
 const timerElement = document.querySelector('.timer');
+const backButton = document.querySelector('.back'); // przycisk do wyjscia z quizu
+//zmienne do obslugi quizu
 let number = 0; // numer pytania
 let time = 5; // pozostaly czas
 let points = 0; // punkty
@@ -247,11 +250,11 @@ for(let i = 0;i < 4;i++){
     answerElements[i].textContent = quizzes[choosenOption][number].answers[i];
 }
 number++;
-setInterval(() => {
+const timer = setInterval(() => {
     time--;
     timerElement.textContent = time;
 },1000);
-const timer = setInterval(() => { // zmiana pytania po 5sekundach
+const changeQuestionInterval = setInterval(() => { // zmiana pytania po 5sekundach
     changeQuestion();
 },5000);  
 
@@ -262,9 +265,14 @@ answerElements.forEach(btn => {
             points += 10;
             pointsElement.style.setProperty('--width',points+'%');
         }
-        clearInterval(timer);
+        clearInterval(changeQuestionInterval);
         changeQuestion();
     });
+});
+
+//zakonczenie quizu po kliknieciu przycisku
+backButton.addEventListener('click',() => {
+    endQuiz();
 });
 
 function changeQuestion()
@@ -282,4 +290,10 @@ function changeQuestion()
     else{
         window.location.href = '../index.html';
     }
+}
+
+function endQuiz(){
+    clearInterval(timer);
+    clearInterval(changeQuestionInterval);
+    window.location.href = '../index.html';
 }
